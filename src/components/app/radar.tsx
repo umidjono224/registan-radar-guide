@@ -54,22 +54,25 @@ export function Radar({ heading, markers, rangeM = 400, onSelect, state = "ready
         </span>
       ))}
 
-      {/* rotating compass ring */}
+      {/* rotating compass ring: ticks rotate with heading */}
       <div className="absolute inset-0 transition-transform duration-300 ease-out" style={{ transform: `rotate(${-heading}deg)` }}>
-        {(["N", "E", "S", "W"] as const).map((c, i) => (
+        {Array.from({ length: 36 }).map((_, i) => (
+          <span key={i} className={cn("absolute left-1/2 top-0 h-2 w-px bg-muted-foreground/40", i % 9 === 0 && "h-3 bg-muted-foreground")} style={{ transformOrigin: "50% 170px", transform: `translateX(-50%) rotate(${i * 10}deg)` }} />
+        ))}
+      </div>
+      {/* cardinal labels: placed by trig so text stays upright */}
+      {(["N", "E", "S", "W"] as const).map((c, i) => {
+        const a = ((i * 90 - heading) * Math.PI) / 180;
+        return (
           <span
             key={c}
-            className={cn("absolute left-1/2 top-1/2 flex h-7 w-7 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full text-xs font-bold", c === "N" ? "bg-destructive text-destructive-foreground" : "bg-surface-2 text-muted-foreground")}
-            style={{ transform: `translate(-50%,-50%) rotate(${i * 90}deg) translateY(-50%) translateY(calc(-170px + 100%)) rotate(${-i * 90 + heading}deg)`, ["--r" as string]: "" }}
+            className={cn("absolute z-10 flex h-7 w-7 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full text-xs font-bold transition-all duration-300 ease-out", c === "N" ? "bg-destructive text-destructive-foreground" : "bg-surface-2 text-muted-foreground")}
+            style={{ left: `${50 + 50 * Math.sin(a)}%`, top: `${50 - 50 * Math.cos(a)}%` }}
           >
             {labels[c][0]}
           </span>
-        ))}
-        {/* tick marks */}
-        {Array.from({ length: 36 }).map((_, i) => (
-          <span key={i} className={cn("absolute left-1/2 top-0 h-2 w-px origin-[0_170px] bg-muted-foreground/40", i % 9 === 0 && "h-3 bg-muted-foreground")} style={{ transform: `translateX(-50%) rotate(${i * 10}deg)` }} />
-        ))}
-      </div>
+        );
+      })}
 
       {/* heading cone */}
       {!dim && <div className="absolute left-1/2 top-1/2 h-1/2 w-24 -translate-x-1/2 -translate-y-full origin-bottom rounded-t-full bg-gradient-to-t from-primary/25 to-transparent" />}
