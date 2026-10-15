@@ -10,17 +10,28 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ExploreRouteImport } from './routes/explore'
 import { Route as ForgotRouteImport } from './routes/forgot'
 import { Route as LanguageRouteImport } from './routes/language'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as MapRouteImport } from './routes/map'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as RadarRouteImport } from './routes/radar'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as VerifyRouteImport } from './routes/verify'
+import { Route as AudioPlaceIdRouteImport } from './routes/audio.$placeId'
 import { Route as LegalDocRouteImport } from './routes/legal.$doc'
+import { Route as PlacesIndexRouteImport } from './routes/places.index'
+import { Route as PlacesPlaceIdRouteImport } from './routes/places.$placeId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExploreRoute = ExploreRouteImport.update({
+  id: '/explore',
+  path: '/explore',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ForgotRoute = ForgotRouteImport.update({
@@ -38,9 +49,19 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MapRoute = MapRouteImport.update({
+  id: '/map',
+  path: '/map',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OnboardingRoute = OnboardingRouteImport.update({
   id: '/onboarding',
   path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RadarRoute = RadarRouteImport.update({
+  id: '/radar',
+  path: '/radar',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RegisterRoute = RegisterRouteImport.update({
@@ -53,85 +74,142 @@ const VerifyRoute = VerifyRouteImport.update({
   path: '/verify',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AudioPlaceIdRoute = AudioPlaceIdRouteImport.update({
+  id: '/audio/$placeId',
+  path: '/audio/$placeId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LegalDocRoute = LegalDocRouteImport.update({
   id: '/legal/$doc',
   path: '/legal/$doc',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PlacesIndexRoute = PlacesIndexRouteImport.update({
+  id: '/places/',
+  path: '/places/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlacesPlaceIdRoute = PlacesPlaceIdRouteImport.update({
+  id: '/places/$placeId',
+  path: '/places/$placeId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/explore': typeof ExploreRoute
   '/forgot': typeof ForgotRoute
   '/language': typeof LanguageRoute
   '/login': typeof LoginRoute
+  '/map': typeof MapRoute
   '/onboarding': typeof OnboardingRoute
+  '/radar': typeof RadarRoute
   '/register': typeof RegisterRoute
   '/verify': typeof VerifyRoute
+  '/audio/$placeId': typeof AudioPlaceIdRoute
   '/legal/$doc': typeof LegalDocRoute
+  '/places/$placeId': typeof PlacesPlaceIdRoute
+  '/places/': typeof PlacesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/explore': typeof ExploreRoute
   '/forgot': typeof ForgotRoute
   '/language': typeof LanguageRoute
   '/login': typeof LoginRoute
+  '/map': typeof MapRoute
   '/onboarding': typeof OnboardingRoute
+  '/radar': typeof RadarRoute
   '/register': typeof RegisterRoute
   '/verify': typeof VerifyRoute
+  '/audio/$placeId': typeof AudioPlaceIdRoute
   '/legal/$doc': typeof LegalDocRoute
+  '/places/$placeId': typeof PlacesPlaceIdRoute
+  '/places': typeof PlacesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/explore': typeof ExploreRoute
   '/forgot': typeof ForgotRoute
   '/language': typeof LanguageRoute
   '/login': typeof LoginRoute
+  '/map': typeof MapRoute
   '/onboarding': typeof OnboardingRoute
+  '/radar': typeof RadarRoute
   '/register': typeof RegisterRoute
   '/verify': typeof VerifyRoute
+  '/audio/$placeId': typeof AudioPlaceIdRoute
   '/legal/$doc': typeof LegalDocRoute
+  '/places/$placeId': typeof PlacesPlaceIdRoute
+  '/places/': typeof PlacesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/explore'
     | '/forgot'
     | '/language'
     | '/login'
+    | '/map'
     | '/onboarding'
+    | '/radar'
     | '/register'
     | '/verify'
+    | '/audio/$placeId'
     | '/legal/$doc'
+    | '/places/$placeId'
+    | '/places/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/explore'
     | '/forgot'
     | '/language'
     | '/login'
+    | '/map'
     | '/onboarding'
+    | '/radar'
     | '/register'
     | '/verify'
+    | '/audio/$placeId'
     | '/legal/$doc'
+    | '/places/$placeId'
+    | '/places'
   id:
     | '__root__'
     | '/'
+    | '/explore'
     | '/forgot'
     | '/language'
     | '/login'
+    | '/map'
     | '/onboarding'
+    | '/radar'
     | '/register'
     | '/verify'
+    | '/audio/$placeId'
     | '/legal/$doc'
+    | '/places/$placeId'
+    | '/places/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ExploreRoute: typeof ExploreRoute
   ForgotRoute: typeof ForgotRoute
   LanguageRoute: typeof LanguageRoute
   LoginRoute: typeof LoginRoute
+  MapRoute: typeof MapRoute
   OnboardingRoute: typeof OnboardingRoute
+  RadarRoute: typeof RadarRoute
   RegisterRoute: typeof RegisterRoute
   VerifyRoute: typeof VerifyRoute
+  AudioPlaceIdRoute: typeof AudioPlaceIdRoute
   LegalDocRoute: typeof LegalDocRoute
+  PlacesPlaceIdRoute: typeof PlacesPlaceIdRoute
+  PlacesIndexRoute: typeof PlacesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -141,6 +219,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/explore': {
+      id: '/explore'
+      path: '/explore'
+      fullPath: '/explore'
+      preLoaderRoute: typeof ExploreRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/forgot': {
@@ -164,11 +249,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/map': {
+      id: '/map'
+      path: '/map'
+      fullPath: '/map'
+      preLoaderRoute: typeof MapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/onboarding': {
       id: '/onboarding'
       path: '/onboarding'
       fullPath: '/onboarding'
       preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/radar': {
+      id: '/radar'
+      path: '/radar'
+      fullPath: '/radar'
+      preLoaderRoute: typeof RadarRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/register': {
@@ -185,6 +284,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VerifyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/audio/$placeId': {
+      id: '/audio/$placeId'
+      path: '/audio/$placeId'
+      fullPath: '/audio/$placeId'
+      preLoaderRoute: typeof AudioPlaceIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/legal/$doc': {
       id: '/legal/$doc'
       path: '/legal/$doc'
@@ -192,18 +298,38 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LegalDocRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/places/': {
+      id: '/places/'
+      path: '/places'
+      fullPath: '/places/'
+      preLoaderRoute: typeof PlacesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/places/$placeId': {
+      id: '/places/$placeId'
+      path: '/places/$placeId'
+      fullPath: '/places/$placeId'
+      preLoaderRoute: typeof PlacesPlaceIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ExploreRoute: ExploreRoute,
   ForgotRoute: ForgotRoute,
   LanguageRoute: LanguageRoute,
   LoginRoute: LoginRoute,
+  MapRoute: MapRoute,
   OnboardingRoute: OnboardingRoute,
+  RadarRoute: RadarRoute,
   RegisterRoute: RegisterRoute,
   VerifyRoute: VerifyRoute,
+  AudioPlaceIdRoute: AudioPlaceIdRoute,
   LegalDocRoute: LegalDocRoute,
+  PlacesPlaceIdRoute: PlacesPlaceIdRoute,
+  PlacesIndexRoute: PlacesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
